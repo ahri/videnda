@@ -1,4 +1,4 @@
-package com.ahri.flashcards;
+package com.kaizen.videnda;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,8 +10,9 @@ import android.os.Environment;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
-public class FlashCards extends Activity
+public class Videnda extends Activity
 {
         /** Called when the activity is first created. */
         @Override
@@ -22,16 +23,22 @@ public class FlashCards extends Activity
 
                 String state = Environment.getExternalStorageState();
 
-                if (!Environment.MEDIA_MOUNTED.equals(state) || Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-                        // Need read/write so pop up error
+                if (!Environment.MEDIA_MOUNTED.equals(state) ||
+                    Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+                		this.message("SD Card must be mounted");
+                		this.finish();
+                                return;
                 }
 
-                File path = new File(Environment.getExternalStorageDirectory(), "FlashCards");
+                File path = new File(Environment.getExternalStorageDirectory(),
+                                     this.getApplicationContext().getString(R.string.app_name));
 
                 // Make sure the directory exists.
                 path.mkdirs();
                 if (!path.isDirectory()) {
-                        // pop up error
+                        this.message("Cannot write directory: " + path.getAbsolutePath());
+            	        this.finish();
+                        return;
                 }
 
                 //-----------------------------
@@ -47,6 +54,11 @@ public class FlashCards extends Activity
                                                          3);
                         dd.random();
                 }
+        }
+
+        public void message(String str)
+        {
+                Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
         }
 
         public ArrayList<Deck> getDecks(File path)

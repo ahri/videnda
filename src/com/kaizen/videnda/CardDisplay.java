@@ -1,4 +1,4 @@
-package com.ahri.flashcards;
+package com.kaizen.videnda;
 
 import java.util.ArrayList;
 import java.util.Random;

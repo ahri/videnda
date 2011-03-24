@@ -1,4 +1,4 @@
-package com.ahri.flashcards;
+package com.kaizen.videnda;
 
 import java.io.File;
 import java.io.FileNotFoundException;
