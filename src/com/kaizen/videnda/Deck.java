@@ -1,18 +1,22 @@
 package com.kaizen.videnda;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
-import java.io.FileNotFoundException;
 
 abstract public class Deck
 {
         public ArrayList<Card> cards;
+		public String name;
+		public File path;
 
         public Deck(File path) throws FileNotFoundException
         {
                 this.cards = new ArrayList<Card>();
+                this.name = path.getName();
+                this.path = path;
                 this.populateCards(path);
         }
 

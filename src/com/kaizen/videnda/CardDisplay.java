@@ -3,6 +3,9 @@ package com.kaizen.videnda;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.kaizen.util.Message;
+
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.view.View;
@@ -10,9 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-class CardDisplay
+class CardDisplay extends Activity
 {
         protected Context context;
         protected ImageView card_view;
@@ -31,7 +33,7 @@ class CardDisplay
                 this.num_answers = num_answers;
         }
 
-        public void random()
+        public void randomCard()
         {
                 ArrayList<Card> answers = this.deck.getRandomCards(this.num_answers, new ArrayList<Card>());
                 if (answers == null) {
@@ -53,11 +55,13 @@ class CardDisplay
                         {
                                 public void onClick(View v)
                                 {
-                                        Toast.makeText(v.getContext(),
-                                                       answer.equals(card)? "Correct!" : "Incorrect",
-                                                       Toast.LENGTH_SHORT).show();
-
-                                        CardDisplay.this.random();
+                                		if (answer.equals(card)) {
+                                			Message.popup(v.getContext(), "Correct!");
+                                            CardDisplay.this.randomCard();
+                                		} else {
+                                			Message.popup(v.getContext(), "Incorrect");
+                                			((Button) v).setEnabled(false);
+                                		}
                                 }
                         });
 
