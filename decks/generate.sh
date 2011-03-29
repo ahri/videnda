@@ -47,4 +47,4 @@ json_footer ) > list.json
 for f in *.zip; do
         html_content "$f"
 done
-html_footer ) > list.html
+html_footer ) > index.html
