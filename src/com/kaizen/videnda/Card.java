@@ -1,20 +1,16 @@
 package com.kaizen.videnda;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
-public class Card
+public abstract class Card
 {
-        protected File file;
-        protected String answer;
+        public String answer;
 
-        public Card(File file) throws FileNotFoundException
+        protected void setAnswerFromFilename(String name)
         {
-                if(!file.exists()) {
-                        throw new FileNotFoundException();
-                }
-
-                this.file = file;
-                this.answer = file.getName().replaceFirst("\\.[^\\.]+$", "");
+                this.answer = name.replaceFirst("\\.[^\\.]+$", "");
         }
+
+        public abstract InputStream getInputStream() throws IOException;
 }

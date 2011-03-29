@@ -1,7 +1,7 @@
 package com.kaizen.videnda;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -12,7 +12,7 @@ abstract public class Deck
 		public String name;
 		public File path;
 
-        public Deck(File path) throws FileNotFoundException
+        public Deck(File path) throws IOException
         {
                 this.cards = new ArrayList<Card>();
                 this.name = path.getName();
@@ -55,5 +55,5 @@ abstract public class Deck
                 return false;
         }
 
-        abstract protected void populateCards(File path) throws FileNotFoundException;
+        abstract protected void populateCards(File path) throws IOException;
 }

@@ -1,7 +1,7 @@
 package com.kaizen.videnda;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -18,7 +18,7 @@ public class DeckDisplay extends Activity {
                 Deck deck = null;
                 try {
                         deck = DeckFactory.provide((File) extras.get("path"));
-                } catch (FileNotFoundException e) {
+                } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                 }
@@ -29,6 +29,6 @@ public class DeckDisplay extends Activity {
                                                  (LinearLayout) this.findViewById(R.id.button_row),
                                                  deck,
                                                  3);
-                dd.randomCard();
+				dd.randomCard();
         }
 }

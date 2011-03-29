@@ -1,5 +1,6 @@
 package com.kaizen.videnda;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -45,7 +46,13 @@ class CardDisplay extends Activity
                 Random r = new Random();
                 final Card card = answers.get(r.nextInt(this.num_answers));
 
-                this.card_view.setImageBitmap(BitmapFactory.decodeFile(card.file.getAbsolutePath()));
+                //this.card_view.setImageBitmap(BitmapFactory.decodeFile(card.file.getAbsolutePath()));
+                try {
+                        this.card_view.setImageBitmap(BitmapFactory.decodeStream(card.getInputStream()));
+                } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                }
 
                 for (int i = 0; i < this.num_answers; i++) {
                         final Card answer = answers.get(i);
@@ -55,13 +62,13 @@ class CardDisplay extends Activity
                         {
                                 public void onClick(View v)
                                 {
-                                		if (answer.equals(card)) {
-                                			Message.popup(v.getContext(), "Correct!");
-                                            CardDisplay.this.randomCard();
-                                		} else {
-                                			Message.popup(v.getContext(), "Incorrect");
-                                			((Button) v).setEnabled(false);
-                                		}
+                                                if (answer.equals(card)) {
+                                                        Message.popup(v.getContext(), "Correct!");
+                                                        CardDisplay.this.randomCard();
+                                                } else {
+                                                        Message.popup(v.getContext(), "Incorrect");
+                                                        ((Button) v).setEnabled(false);
+                                                }
                                 }
                         });
 

@@ -1,7 +1,7 @@
 package com.kaizen.videnda;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -58,7 +58,6 @@ public class Videnda extends Activity
                         Button b = new Button(this);
                         Deck d = itr.next();
                         b.setText(d.name);
-                        //final Intent intent = new Intent("com.kaizen.videnda.action.DISPLAY_DECK", Uri.parse(d.name));
                         final Intent intent = new Intent(this, DeckDisplay.class);
                         intent.putExtra("path", d.path);
                         b.setOnClickListener(new View.OnClickListener()
@@ -83,8 +82,10 @@ public class Videnda extends Activity
                         f = new File(path, files[i]);
                         try {
                                 Deck d = DeckFactory.provide(f);
-                                decks.add(d);
-                        } catch (FileNotFoundException e) {
+                                if (d != null) {
+                                        decks.add(d);
+                                }
+                        } catch (IOException e) {
                                 // do nothing
                                 Log.i("deck_create_fail", f.getAbsolutePath());
                         } catch (NullPointerException e) {
