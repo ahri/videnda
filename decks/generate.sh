@@ -26,7 +26,7 @@ HTML
 
 html_content() {
         c="$1"
-        printf '<li><a href="%s">%s</a></li>' "$c" "$(echo $c | sed 's/\.[^\.]*$//')"
+        printf '<li><a href="%s">%s</a></li>\n' "$c" "$(echo $c | sed 's/\.[^\.]*$//')"
 }
 
 html_footer() {
