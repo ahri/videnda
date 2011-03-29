@@ -1,18 +1,5 @@
 #!/bin/bash
 
-json_header() {
-        echo '{'
-}
-
-json_content() {
-        c="$1"
-        echo "\"$c\","
-}
-
-json_footer() {
-        echo '}'
-}
-
 html_header() {
         echo <<HTML
 <html>
@@ -35,13 +22,9 @@ html_footer() {
 HTML
 }
 
-
-
-( json_header
 for f in *.zip; do
-        json_content "$f"
-done
-json_footer ) > list.json
+       printf '%s %s\n' "$(md5sum "$f" | sed 's/ .*$//')" "$f"
+done > list
 
 ( html_header
 for f in *.zip; do
