@@ -3,7 +3,8 @@ package com.kaizen.videnda;
 import java.io.File;
 import java.io.IOException;
 
-public class DeckDirectory extends Deck {
+public class DeckDirectory extends Deck
+{
         public DeckDirectory(File path) throws IOException
         {
                 super(path);

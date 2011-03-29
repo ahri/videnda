@@ -17,14 +17,16 @@ import android.widget.LinearLayout;
 
 class CardDisplay extends Activity
 {
-        protected Context context;
+        protected Context   context;
         protected ImageView card_view;
         protected ViewGroup card_row;
         protected ViewGroup button_row;
-        protected Deck deck;
-        protected int num_answers;
+        protected Deck      deck;
+        protected int       num_answers;
 
-        public CardDisplay(Context context, ImageView card_view, ViewGroup card_row, ViewGroup button_row, Deck deck, int num_answers)
+        public CardDisplay(Context context, ImageView card_view,
+                        ViewGroup card_row, ViewGroup button_row, Deck deck,
+                        int num_answers)
         {
                 this.context = context;
                 this.card_view = card_view;
@@ -36,7 +38,8 @@ class CardDisplay extends Activity
 
         public void randomCard()
         {
-                ArrayList<Card> answers = this.deck.getRandomCards(this.num_answers, new ArrayList<Card>());
+                ArrayList<Card> answers = this.deck.getRandomCards(
+                                this.num_answers, new ArrayList<Card>());
                 if (answers == null) {
                         return;
                 }
@@ -46,9 +49,10 @@ class CardDisplay extends Activity
                 Random r = new Random();
                 final Card card = answers.get(r.nextInt(this.num_answers));
 
-                //this.card_view.setImageBitmap(BitmapFactory.decodeFile(card.file.getAbsolutePath()));
+                // this.card_view.setImageBitmap(BitmapFactory.decodeFile(card.file.getAbsolutePath()));
                 try {
-                        this.card_view.setImageBitmap(BitmapFactory.decodeStream(card.getInputStream()));
+                        this.card_view.setImageBitmap(BitmapFactory
+                                        .decodeStream(card.getInputStream()));
                 } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -58,17 +62,18 @@ class CardDisplay extends Activity
                         final Card answer = answers.get(i);
                         Button b = this.makeButton(answer.answer);
 
-                        b.setOnClickListener(new View.OnClickListener()
-                        {
+                        b.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v)
                                 {
-                                                if (answer.equals(card)) {
-                                                        Message.popup(v.getContext(), "Correct!");
-                                                        CardDisplay.this.randomCard();
-                                                } else {
-                                                        Message.popup(v.getContext(), "Incorrect");
-                                                        ((Button) v).setEnabled(false);
-                                                }
+                                        if (answer.equals(card)) {
+                                                Message.popup(v.getContext(),
+                                                                "Correct!");
+                                                CardDisplay.this.randomCard();
+                                        } else {
+                                                Message.popup(v.getContext(),
+                                                                "Incorrect");
+                                                ((Button) v).setEnabled(false);
+                                        }
                                 }
                         });
 
@@ -76,9 +81,12 @@ class CardDisplay extends Activity
                 }
         }
 
-        protected Button makeButton(String answer) {
+        protected Button makeButton(String answer)
+        {
                 Button b = new Button(this.context);
-                b.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.FILL_PARENT, 1));
+                b.setLayoutParams(new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.WRAP_CONTENT,
+                                LinearLayout.LayoutParams.FILL_PARENT, 1));
                 b.setText(answer.toCharArray(), 0, answer.length());
                 return b;
         }

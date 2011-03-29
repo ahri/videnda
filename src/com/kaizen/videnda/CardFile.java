@@ -16,8 +16,8 @@ public class CardFile extends Card
         }
 
         @Override
-        public InputStream getInputStream() throws IOException {
+        public InputStream getInputStream() throws IOException
+        {
                 return new FileInputStream(this.file);
         }
-
 }

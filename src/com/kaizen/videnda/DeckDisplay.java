@@ -8,7 +8,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-public class DeckDisplay extends Activity {
+public class DeckDisplay extends Activity
+{
 
         public void onCreate(Bundle savedInstanceState)
         {
@@ -23,12 +24,13 @@ public class DeckDisplay extends Activity {
                         e.printStackTrace();
                 }
 
-                CardDisplay dd = new CardDisplay(this.getApplicationContext(),
-                                                 (ImageView) this.findViewById(R.id.card),
-                                                 (LinearLayout) this.findViewById(R.id.card_row),
-                                                 (LinearLayout) this.findViewById(R.id.button_row),
-                                                 deck,
-                                                 3);
-				dd.randomCard();
+                CardDisplay dd = new CardDisplay(
+                                this.getApplicationContext(),
+                                (ImageView) this.findViewById(R.id.card),
+                                (LinearLayout) this.findViewById(R.id.card_row),
+                                (LinearLayout) this
+                                                .findViewById(R.id.button_row),
+                                deck, 3);
+                dd.randomCard();
         }
 }

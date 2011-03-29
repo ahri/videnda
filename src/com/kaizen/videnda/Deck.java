@@ -9,8 +9,8 @@ import java.util.Random;
 abstract public class Deck
 {
         public ArrayList<Card> cards;
-		public String name;
-		public File path;
+        public String          name;
+        public File            path;
 
         public Deck(File path) throws IOException
         {
@@ -20,7 +20,8 @@ abstract public class Deck
                 this.populateCards(path);
         }
 
-        public ArrayList<Card> getRandomCards(int number, ArrayList<Card> already_used)
+        public ArrayList<Card> getRandomCards(int number,
+                        ArrayList<Card> already_used)
         {
                 if (already_used.size() >= this.cards.size()) {
                         return null;
@@ -31,7 +32,8 @@ abstract public class Deck
 
                 boolean new_card = false;
                 while (cards.size() < number || !new_card) {
-                        Card card = this.cards.get(r.nextInt(this.cards.size()));
+                        Card card = this.cards
+                                        .get(r.nextInt(this.cards.size()));
                         if (this.contains(cards, card)) {
                                 continue;
                         }

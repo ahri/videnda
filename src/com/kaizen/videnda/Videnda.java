@@ -27,30 +27,35 @@ public class Videnda extends Activity
 
                 String state = Environment.getExternalStorageState();
 
-                if (!Environment.MEDIA_MOUNTED.equals(state) ||
-                    Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-                                Message.popup(this, "SD Card must be mounted");
-                                this.finish();
-                                return;
-                }
-
-                File path = new File(Environment.getExternalStorageDirectory(),
-                                     this.getApplicationContext().getString(R.string.app_name));
-
-                // Make sure the directory exists.
-                path.mkdirs();
-                if (!path.isDirectory()) {
-                        Message.popup(this, "Cannot write directory: " + path.getAbsolutePath());
+                if (!Environment.MEDIA_MOUNTED.equals(state)
+                                || Environment.MEDIA_MOUNTED_READ_ONLY
+                                                .equals(state)) {
+                        Message.popup(this, "SD Card must be mounted");
                         this.finish();
                         return;
                 }
 
-                //-----------------------------
+                File path = new File(Environment.getExternalStorageDirectory(),
+                                this.getApplicationContext().getString(
+                                                R.string.app_name));
+
+                // Make sure the directory exists.
+                path.mkdirs();
+                if (!path.isDirectory()) {
+                        Message.popup(this,
+                                        "Cannot write directory: "
+                                                        + path.getAbsolutePath());
+                        this.finish();
+                        return;
+                }
+
+                // -----------------------------
 
                 ArrayList<Deck> decks = this.getDecks(path);
                 Iterator<Deck> itr = decks.iterator();
 
-                LinearLayout deck_list = (LinearLayout) this.findViewById(R.id.deck_list);
+                LinearLayout deck_list = (LinearLayout) this
+                                .findViewById(R.id.deck_list);
 
                 final Activity activity = this;
 
@@ -58,13 +63,16 @@ public class Videnda extends Activity
                         Button b = new Button(this);
                         Deck d = itr.next();
                         b.setText(d.name);
-                        final Intent intent = new Intent(this, DeckDisplay.class);
+                        final Intent intent = new Intent(this,
+                                        DeckDisplay.class);
                         intent.putExtra("path", d.path);
-                        b.setOnClickListener(new View.OnClickListener()
-                        {
+                        b.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v)
                                 {
-                                        Log.i("send_intent", intent.getAction() + ":" + intent.getData());
+                                        Log.i("send_intent",
+                                                        intent.getAction()
+                                                                        + ":"
+                                                                        + intent.getData());
                                         activity.startActivity(intent);
                                 }
                         });

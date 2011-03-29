@@ -8,7 +8,7 @@ import java.util.zip.ZipFile;
 public class CardZip extends Card
 {
         protected ZipEntry entry;
-        protected ZipFile file;
+        protected ZipFile  file;
 
         public CardZip(ZipFile file, ZipEntry entry)
         {
@@ -18,7 +18,8 @@ public class CardZip extends Card
         }
 
         @Override
-        public InputStream getInputStream() throws IOException {
+        public InputStream getInputStream() throws IOException
+        {
                 return this.file.getInputStream(this.entry);
         }
 }

@@ -6,7 +6,8 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-public class DeckZip extends Deck {
+public class DeckZip extends Deck
+{
         public DeckZip(File path) throws IOException
         {
                 super(path);
