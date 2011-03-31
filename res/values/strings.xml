@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Videnda!</string>
     <string name="app_name">Videnda</string>
+    <string name="deck_list_url">http://ahri.github.com/videnda/decks/list</string>
 </resources>

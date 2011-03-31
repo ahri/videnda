@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/download" android:numericShortcut="0"
+		android:titleCondensed="Install Decks" android:alphabeticShortcut="i"
+		android:title="Install Decks">
+		<menu>
+			<item android:title="dummy" android:id="@+id/item1" android:checkable="true"></item>
+		</menu>
+	</item>
+</menu>
